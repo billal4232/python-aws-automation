@@ -15,11 +15,12 @@ Searches for an EC2 instance by Name tag and terminates it safely.
 - Clear error message if instance name not found
 
 **Example:**
-
+```
 Type instance name to terminate: web-server
 Found: i-0abc123 — web-server
 Are you sure you want to terminate? (yes/no): yes
 Terminated.
+```
 
 ## Requirements
 
@@ -29,10 +30,10 @@ Terminated.
 
 ## Setup
 
-
+```
 pip install boto3 --break-system-packages
 python3 terminate_ec2.py
-
+```
 
 ## What I Learned
 
