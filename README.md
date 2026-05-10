@@ -6,7 +6,7 @@ Python scripts for automating AWS infrastructure tasks using boto3.
 
 ### terminate_ec2.py
 
-Searches for an EC2 instance by Name tag and terminates it safely.
+Searches for an EC2 instance by id tag and terminates it safely.
 
 **Features:**
 - Lists and searches instances by Name tag
@@ -16,7 +16,7 @@ Searches for an EC2 instance by Name tag and terminates it safely.
 
 **Example:**
 ```
-Type instance name to terminate: web-server
+Type instance id to terminate: 
 Found: i-0abc123 — web-server
 Are you sure you want to terminate? (yes/no): yes
 Terminated.
