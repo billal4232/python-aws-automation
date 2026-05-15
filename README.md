@@ -5,39 +5,52 @@ Python scripts for automating AWS infrastructure tasks using boto3.
 ## Scripts
 
 ### terminate_ec2.py
-
-Searches for an EC2 instance by id tag and terminates it safely.
+Lists running EC2 instances and terminates a selected one safely.
 
 **Features:**
-- Lists and searches instances by Name tag
+- Lists instances with ID, type, state, and name tag
 - Confirmation prompt before terminating
 - Handles missing tags safely
-- Clear error message if instance name not found
 
-**Example:**
-```
-Type instance id to terminate: 
-Found: i-0abc123 — web-server
-Are you sure you want to terminate? (yes/no): yes
-Terminated.
-```
+### ec2_report.py
+Fetches all EC2 instances and saves a detailed report to `ec2_report.json`.
+
+**Collects per instance:**
+- Instance ID
+- Name (from tags, defaults to "No Name" if missing)
+- State (running/stopped)
+- Instance type
+- Launch time
+- Region (auto-detected from AWS config)
+
+**Features:**
+- Error handling per instance
+- Prints report to terminal
+- Saves report to ec2_report.json
 
 ## Requirements
-
 - Python 3
-- boto3 installed
-- AWS CLI configured with appropriate profile
+- boto3
+- AWS CLI configured with named profile
 
 ## Setup
-
-```
+```bash
 pip install boto3 --break-system-packages
-python3 terminate_ec2.py
 ```
+
+## How to Run
+```bash
+python3 terminate_ec2.py
+python3 ec2_report.py
+```
+
+## IAM Permissions Required
+- ec2:DescribeInstances
+- ec2:TerminateInstances
 
 ## What I Learned
-
-- AWS response structure — nested dictionaries and lists
-- Safely accessing dictionary keys with `.get()` to handle missing tags
-- Using boto3 Session with named profiles
-- Building safe automation with confirmation prompts before destructive actions
+- AWS response structure — nested Reservations and Instances
+- Extracting name from Tags list using loop and condition
+- Dynamic region detection from AWS config
+- Separating concerns using functions
+- Error handling with try/except per function
