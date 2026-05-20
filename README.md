@@ -99,3 +99,17 @@ python3 deploy.py
 - boto3 S3 upload with content-type metadata
 - CloudFront cache invalidation via API
 - Deployment workflow automation
+
+### stadiumbuzz/site_health.py
+Checks if the live site is healthy after deployment.
+
+**What it checks:**
+- HTTP status code — confirms site returns 200
+- CloudFront header — confirms traffic is served through CDN
+- 5 second timeout — catches unresponsive site
+
+**Output example:**
+```
+✅ Site is up — status 200
+✅ Served by CloudFront — Hit from cloudfront
+```
